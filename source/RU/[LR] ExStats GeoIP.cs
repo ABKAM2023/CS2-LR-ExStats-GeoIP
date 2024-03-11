@@ -27,7 +27,7 @@ public class LevelsRanksModuleExStatsGeoIP : BasePlugin
     private readonly PluginCapability<IPointsManager> _pointsManagerCapability = new("levelsranks");
     private IPointsManager? _pointsManager;
 
-    public override void Load(bool hotReload)
+    public override void OnAllPluginsLoaded(bool hotReload)
     {
         base.Load(hotReload);
         
