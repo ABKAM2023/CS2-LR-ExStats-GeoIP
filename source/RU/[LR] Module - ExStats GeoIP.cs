@@ -17,7 +17,7 @@ namespace LevelsRanksModuleExStatsGeoIP;
 public class LevelsRanksModuleExStatsGeoIP : BasePlugin
 {
     public override string ModuleName => "[LR] Module - ExStats GeoIP";
-    public override string ModuleVersion => "1.0";
+    public override string ModuleVersion => "1.1.0";
     public override string ModuleAuthor => "ABKAM designed by RoadSide Romeo & Wend4r";
     public override string ModuleDescription => "A plugin for GeoIP information.";
     
