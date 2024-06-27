@@ -63,9 +63,9 @@ public class LevelsRanksModuleExStatsGeoIP : BasePlugin
             var ipAddress = IPAddress.Parse(playerIp);
             var cityResponse = reader.City(ipAddress);
 
-            var countryName = GetNameFromResponse(cityResponse.Country.Names, "country");
-            var regionName = GetNameFromResponse(cityResponse.MostSpecificSubdivision.Names, "region");
-            var cityName = GetNameFromResponse(cityResponse.City.Names, "city");
+            var countryName = GetNameFromResponse(cityResponse.Country.Names);
+            var regionName = GetNameFromResponse(cityResponse.MostSpecificSubdivision.Names);
+            var cityName = GetNameFromResponse(cityResponse.City.Names);
             var countryCode = cityResponse.Country.IsoCode ?? "N/A";
 
             var connectionString = _levelsRanksApi.DbConnectionString;
@@ -100,14 +100,12 @@ public class LevelsRanksModuleExStatsGeoIP : BasePlugin
         }
     }
 
-    private string GetNameFromResponse(IReadOnlyDictionary<string, string> names, string entity)
+    private string GetNameFromResponse(IReadOnlyDictionary<string, string> names)
     {
         if (names == null) return "N/A";
         if (names.ContainsKey("en"))
             return names["en"];
-        if (names.ContainsKey("ru"))
-            return names["ru"];
-        return $"Unknown {entity}";
+        return names.ContainsKey("ru") ? names["ru"] : "Unknown";
     }
 
     private const string CreateTableQuery = @"CREATE TABLE IF NOT EXISTS `{0}` (
